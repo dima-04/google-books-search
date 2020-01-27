@@ -17,6 +17,8 @@ var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/books-search";
 
 mongoose.connect(MONGODB_URI);
 
+require('./routes/api-search-routes')(app);
+
 app.listen(PORT, function () {
   console.log(
     "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
