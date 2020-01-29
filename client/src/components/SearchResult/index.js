@@ -1,13 +1,15 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
+import SearchResultBook from '../SearchResultBook';
 
-function SearchResult() {
+function SearchResult(props) {
   return (
-    <Container className="mt-5"> 
+    <Container className="mt-5">
       <h3>Result</h3>
-      </Container>
-   
-    );
+      {props.books.map(book =>
+        <SearchResultBook book={book} onClick={props.onSaveClick} />)}
+    </Container>
+  );
 
 }
 export default SearchResult;
