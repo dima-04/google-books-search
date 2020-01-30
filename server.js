@@ -7,6 +7,9 @@ var PORT = process.env.PORT || 3001;
 
 // Use the express.static middleware to serve static content for the app from the "public" directory in the application directory.
 app.use(express.static("public"));
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
 
 // Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));

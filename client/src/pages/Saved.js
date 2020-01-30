@@ -8,18 +8,22 @@ class Saved extends Component {
     books: []
   }
   componentDidMount() {
+    this.updateBooks();
+  };
+
+  updateBooks() {
     API.getSavedBooks().then(res => {
       const newState = { ...this.state };
       newState.books = res.data;
       this.setState(newState);
     });
-  };
+  }
 
   handleDeleteClick = event => {
     console.log(event);
     const id = event.target.attributes.getNamedItem("data-id").value;
     API.deleteBook(id).then(res => {
-      console.log("if you happy and you know it ");
+      this.updateBooks();
     });
   }
   render() {
