@@ -22,8 +22,6 @@ module.exports = function (app) {
   });
 
   app.post('/api/book/save', function (req, res) {
-    console.log("https://www.googleapis.com/books/v1/volumes/" + req.body.id + "&key=" + keys.apiKeys.googleAPIKey);
-
     axios.get("https://www.googleapis.com/books/v1/volumes/" + req.body.id + "?key=" + keys.apiKeys.googleAPIKey).then(function (response) {
       
       db.Book.create({

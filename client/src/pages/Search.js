@@ -19,20 +19,18 @@ class Search extends Component {
     }
     );
   }
-  handelSaveClick = event =>{
+  handelSaveClick = event => {
     const id = event.target.attributes.getNamedItem("data-id").value;
     API.saveBooks(id).then(res => {
       console.log("if you happy and you know it ");
-  });
-}
-
-
+    });
+  }
 
   render() {
     return (
       <Container>
         <SearchForm onSubmit={this.handleFormSubmit} />
-        <SearchResult books={this.state.books} onSaveClick={this.handelSaveClick} />
+        <SearchResult books={this.state.books} header="Results" buttonText="Save" onButtonClick={this.handelSaveClick} />
       </Container>
     )
 

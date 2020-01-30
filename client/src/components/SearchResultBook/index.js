@@ -7,7 +7,7 @@ function SearchResultBook(props) {
   return (
     <Container>
       <Row >
-        <Col fluid>
+        <Col>
           <h4>{props.book.title}</h4>
           <h6>{props.book.authors}</h6>
         </Col>
@@ -15,7 +15,7 @@ function SearchResultBook(props) {
           <a target="_blank" href={props.book.link}>
             <Button className="ml-1" variant="primary">View</Button>
           </a>
-          <Button className="ml-1" variant="primary" data-id={props.book._id} onClick={props.onClick}>Save</Button>
+          <Button className="ml-1" variant="primary" data-id={props.book._id} onClick={props.onClick}>{props.buttonText}</Button>
         </Col>
       </Row>
       <Row>

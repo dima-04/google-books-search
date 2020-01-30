@@ -1,27 +1,31 @@
 import React, { Component } from "react";
 import { Container } from "react-bootstrap";
-// import SavedForm from "../components/SavedForm";
-// import SavedResult from "../components/SearchResult";
 import API from "../utils/APIs";
+import SearchResult from "../components/SearchResult";
 
 class Saved extends Component {
   state = {
     books: []
   }
-  handleFormSubmit = event => {
-    event.preventDefault();
-    API.savedBooks().then(res => {
+  componentDidMount() {
+    API.getSavedBooks().then(res => {
       const newState = { ...this.state };
       newState.books = res.data;
       this.setState(newState);
-    }
-    );
+    });
+  };
+
+  handleDeleteClick = event => {
+    console.log(event);
+    const id = event.target.attributes.getNamedItem("data-id").value;
+    API.deleteBook(id).then(res => {
+      console.log("if you happy and you know it ");
+    });
   }
   render() {
     return (
       <Container>
-        {/* <SavedForm onSubmit={this.handleFormSubmit} />
-        <SavedResult books={this.state.books} /> */}
+        <SearchResult books={this.state.books} header="Saved Books" buttonText="Delete" onButtonClick={this.handleDeleteClick} />
       </Container>
     )
 
