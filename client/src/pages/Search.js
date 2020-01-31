@@ -1,12 +1,13 @@
 import React, { Component } from "react";
-import { Container } from "react-bootstrap";
+import { Container,Alert } from "react-bootstrap";
 import SearchForm from "../components/SearchForm";
 import SearchResult from "../components/SearchResult";
 import API from "../utils/APIs";
 
 class Search extends Component {
   state = {
-    books: []
+    books: [],
+    showAlert:false
   }
 
   handleFormSubmit = event => {
@@ -22,13 +23,23 @@ class Search extends Component {
   handelSaveClick = event => {
     const id = event.target.attributes.getNamedItem("data-id").value;
     API.saveBooks(id).then(res => {
-      console.log("Your book Saved ");
+      this.showAlert(true);
     });
   }
+
+  showAlert = (show)=>{
+    const newState = { ...this.state };
+      newState.showAlert = show;
+      this.setState(newState);
+      
+    }
 
   render() {
     return (
       <Container>
+        <Alert variant="success" show={this.state.showAlert} onClose={() => this.showAlert(false)} dismissible>
+          Book Is Saved
+        </Alert>
         <SearchForm onSubmit={this.handleFormSubmit} />
         <SearchResult books={this.state.books} header="Results" buttonText="Save" onButtonClick={this.handelSaveClick} />
       </Container>
