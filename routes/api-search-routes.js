@@ -1,6 +1,6 @@
 require("dotenv").config();
 var axios = require("axios");
-var keys = require("../config/apiKeys");
+var keys = require("../config/apikeys");
 var db = require("../models");
 
 module.exports = function (app) {
