@@ -23,6 +23,10 @@ mongoose.connect(MONGODB_URI);
 require('./routes/api-search-routes')(app);
 require('./routes/api-saved-routes')(app);
 
+app.get("*", function(req, res) {
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+});
+
 app.listen(PORT, function () {
   console.log(
     "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
