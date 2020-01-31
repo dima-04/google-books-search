@@ -1,3 +1,4 @@
+require("dotenv").config();
 var axios = require("axios");
 var keys = require("../config/apiKeys");
 var db = require("../models");
@@ -5,6 +6,7 @@ var db = require("../models");
 module.exports = function (app) {
 
   app.get('/api/book/search', function (req, res) {
+    console.log("https://www.googleapis.com/books/v1/volumes?q=" + req.query.name + "&key=" + keys.apiKeys.googleAPIKey);
     axios.get("https://www.googleapis.com/books/v1/volumes?q=" + req.query.name + "&key=" + keys.apiKeys.googleAPIKey).then(function (response) {
       books = response.data.items.map(item => {
         return {

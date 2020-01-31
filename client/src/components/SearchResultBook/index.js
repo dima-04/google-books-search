@@ -5,14 +5,14 @@ function SearchResultBook(props) {
   console.log(props.books);
   console.log(props);
   return (
-    <Container>
+    <Container className="border border-dark rounded m-3 p-2">
       <Row >
         <Col>
           <h4>{props.book.title}</h4>
           <h6>{props.book.authors}</h6>
         </Col>
         <Col xs={2}>
-          <a target="_blank" href={props.book.link}>
+          <a target="_blank" rel={props.book.link} href={props.book.link}>
             <Button className="ml-1" variant="primary">View</Button>
           </a>
           <Button className="ml-1" variant="primary" data-id={props.book._id} onClick={props.onClick}>{props.buttonText}</Button>

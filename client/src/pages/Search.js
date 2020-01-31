@@ -22,7 +22,7 @@ class Search extends Component {
   handelSaveClick = event => {
     const id = event.target.attributes.getNamedItem("data-id").value;
     API.saveBooks(id).then(res => {
-      console.log("if you happy and you know it ");
+      console.log("Your book Saved ");
     });
   }
 
